@@ -1,0 +1,3 @@
+const {chromium}=require('C:/Users/aldiandya/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const fs=require('fs');
+(async()=>{const b=await chromium.launch({headless:true,channel:'msedge'});const p=await b.newPage({viewport:{width:900,height:600}});await p.goto('https://www.google.com/maps?cid=6238639513738272499&output=embed',{waitUntil:'domcontentloaded'});await p.waitForTimeout(2500);console.log('URL',p.url());console.log((await p.locator('body').innerText()).slice(0,3000));await p.screenshot({path:'qa/map-embed-source.png'});await b.close();})().catch(e=>{console.error(e);process.exit(1)});
